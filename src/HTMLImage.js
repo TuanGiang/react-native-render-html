@@ -103,6 +103,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     validImage (source, style, props = {}) {
+        alert(this.state.width +"   " + this.state.height)
         return (
             <Image
               source={source}
