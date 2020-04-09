@@ -80,6 +80,7 @@ export default class HTMLImage extends PureComponent {
         const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
 
         if (styleWidth && styleHeight) {
+            alert(AAAAAA);
             return this.mounted && this.setState({
                 width: typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10),
                 height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleHeight, 10)
@@ -103,7 +104,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     validImage (source, style, props = {}) {
-        alert(this.state.width +"   " + this.state.height)
+        
         return (
             <Image
               source={source}
