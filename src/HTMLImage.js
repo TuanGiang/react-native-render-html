@@ -83,7 +83,7 @@ export default class HTMLImage extends PureComponent {
            const  width: typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10);
            const     height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleHeight, 10);
            alert (width +"  " +height);
-            return this.mounted && this.setState({
+           
             return this.mounted && this.setState({
                 width: typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10),
                 height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleHeight, 10)
