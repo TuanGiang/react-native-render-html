@@ -32,7 +32,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     componentDidMount () {
-        this.getImageSize();
+        this.getImageSize(); 
         this.mounted = true;
     }
 
@@ -79,12 +79,15 @@ export default class HTMLImage extends PureComponent {
         const { source, imagesMaxWidth, style, height, width } = props;
         const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
 
-        if (styleWidth && styleHeight) {  
-            alert(this.mounted);
-            return this.mounted && this.setState({
-                width: typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10),
-                height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleWidth, 10)
-            });
+        if (styleWidth && styleHeight) {   
+            if(this.mounted){
+                const width = typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10);
+                const height = typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleWidth, 10);
+                return this.setState({
+                    width: width,
+                    height: height
+                });    
+            }
         }
         // Fetch image dimensions only if they aren't supplied or if with or height is missing
         Image.getSize(
