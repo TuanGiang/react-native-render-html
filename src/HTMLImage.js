@@ -81,7 +81,7 @@ export default class HTMLImage extends PureComponent {
 
         if (styleWidth && styleHeight) {   
             if(this.mounted){
-                const width = typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10) > imagesMaxWidth ? imagesMaxWidth : parseInt(styleWidth, 10);
+                const width = typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : imagesMaxWidth;
                 const height = typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : typeof width === 'string' ? parseInt(styleHeight, 10) : (width * parseInt(styleHeight, 10)) / parseInt(styleWidth, 10);
                 return this.setState({
                     width: width,
@@ -96,7 +96,7 @@ export default class HTMLImage extends PureComponent {
                 if (!imagesMaxWidth) {
                     return this.mounted && this.setState({ width: originalWidth, height: originalHeight });
                 }
-                const optimalWidth = imagesMaxWidth <= originalWidth ? imagesMaxWidth : originalWidth;
+                const optimalWidth = imagesMaxWidth;
                 const optimalHeight = (optimalWidth * originalHeight) / originalWidth;
                 this.mounted && this.setState({ width: optimalWidth, height: optimalHeight, error: false });
             },
